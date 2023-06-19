@@ -1,32 +1,32 @@
-## GenerateXmers ##
-## Description ##
-GenerateXmers is a function that generates all possible subsequences (x-mers) of a given length from a provided sequence.
-
-## Usage ##
+\name{GenerateXmers}
+\alias{GenerateXmers}
+\title{Generate Xmers}
+\usage{
 GenerateXmers(sq, merslngth)
+}
+\arguments{
+  \item{sq}{a character vector representing a sequence}
+  \item{merslngth}{an integer specifying the length of the desired xmers}
+}
+\description{
+This function generates xmers (subsequences) of a specified length from a given sequence.
+}
+\details{
+The function takes a sequence \code{sq} and an integer \code{merslngth} as input. It generates all possible xmers of length \code{merslngth} from the sequence. An xmer is a subsequence of the original sequence. The function returns a character vector containing the generated xmers.
 
-## Arguments ##
-- sq: A character vector or string representing the input sequence.
-- merslngth: An integer indicating the length of the desired subsequences (x-mers).
+If the length of \code{sq} is shorter than \code{merslngth}, the function will return an empty vector.
 
-## Details ##
-The function takes an input sequence (sq) and generates all possible subsequences (x-mers) of length merslngth. Only subsequences with a length equal to merslngth are returned.
+The function first creates a matrix \code{coordsmtx} using the \code{seq()} function. The matrix has two columns representing the starting and ending positions of the xmers in the sequence. The starting positions range from 1 to the length of \code{sq}, and the ending positions are calculated as the starting positions plus \code{merslngth} minus 1. The matrix is then subsetted to remove positions that exceed the length of \code{sq}.
 
-## Value ##
-A character vector containing all the generated subsequences (x-mers) of length merslngth.
+Next, the function applies a series of operations on \code{coordsmtx} and \code{sq} to generate the xmers. It uses the \code{apply()} function twice, first to iterate over the rows of \code{coordsmtx} and extract the corresponding subsequences from \code{sq}, and then to concatenate the elements of each column to form the xmers.
 
-## Examples ##
-# Example 1:
-sq <- "ATCG"
-merslngth <- 2
-GenerateXmers(sq, merslngth)
-# Output: "AT" "TC" "CG"
+The resulting xmers are stored in the variable \code{tmp}. The function filters out xmers that have a length different from \code{merslngth} using the \code{nchar()} function.
 
-# Example 2:
-sq <- "GATTACA"
-merslngth <- 3
-GenerateXmers(sq, merslngth)
-# Output: "GAT" "ATT" "TTA" "TAC" "ACA"
-
-## Note ##
-The input sequence (sq) should be a character vector or a string. The merslngth parameter should be a positive integer.
+Finally, the function returns the character vector \code{tmp}, which contains the generated xmers.
+}
+\examples{
+sq <- c("A", "T", "G", "C", "A", "T", "G", "C", "A", "T", "G", "C")
+GenerateXmers(sq, 3)
+# Output:
+# [1] "ATG" "TGC" "GCA" "CAT" "ATG" "TGC"
+}
