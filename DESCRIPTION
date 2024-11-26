@@ -1,5 +1,5 @@
 Package: immunoinfo.tools
-Title: A package for user-friendly management of MHC binding prediction runs and results.
+Title: A package containing functions frequently used in the HCEMM-Systems Immunology Research Group @ HUN-REN BRC, Szeged, Hungary.
 Version: 0.1
 Authors@R:
     person("Gergő Mihály", "Balogh", , "gmbalogh@brc.hu", role = c("aut", "cre"),
