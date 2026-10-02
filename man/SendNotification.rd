@@ -37,5 +37,3 @@ SendNotification("Analysis finished.")
 # Specify a custom application name
 
 SendNotification("Model training completed.", app.name = "My R package")
-
-# S
