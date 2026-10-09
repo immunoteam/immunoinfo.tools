@@ -4,11 +4,11 @@ future_apply <- function(x, MARGIN, FUN, .progress = FALSE) {
     x %>%
       split(1:nrow(x)) %>%
       map(unlist) %>%
-      furrr::future_map(FUN, .progress)
+      furrr::future_map(FUN, .progress = .progress)
   } else if(MARGIN == 2) {
     x %>%
       as.list %>%
-      furrr::future_map(FUN, .progress)
+      furrr::future_map(FUN, .progress = .progress)
   } else if(MARGIN > 2) {
     stop("Only row- and column-wise operations are supported.")
   }
